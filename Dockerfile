@@ -1,8 +1,8 @@
 # VERSION 1.8.1-1
 # AUTHOR: Eddie Santos
 # DESCRIPTION: Basic Airflow container
-# BUILD: docker build --rm -t eddierent/airflow .
-# SOURCE: https://github.com/eddie-rent/airflow-docker
+# BUILD: docker build --rm -t esantos3/airflow .
+# SOURCE: https://github.com/esantos3/airflow-docker
 
 FROM python:3.6-slim
 MAINTAINER Eddie Santos <eddie.santos.3@gmail.com>
