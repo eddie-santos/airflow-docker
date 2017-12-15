@@ -34,7 +34,7 @@ t1 = BashOperator(
 
 t2 = DockerOperator(
     task_id='my_project',
-    image='esantos3/my-project:1.0.0',
+    image='registry.hub.docker.com/esantos3/my-project:1.0.0',
     dag=dag)
 
 t2.set_upstream(t1)
