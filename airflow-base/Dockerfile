@@ -1,7 +1,7 @@
-# VERSION 1.8.1-1
+# VERSION 1.0.0
 # AUTHOR: Eddie Santos
 # DESCRIPTION: Basic Airflow container
-# BUILD: docker build --rm -t esantos3/airflow .
+# BUILD: docker build --rm -t esantos3/airflow:1.0.0 .
 # SOURCE: https://github.com/esantos3/airflow-docker
 
 FROM python:3.6-slim
@@ -67,13 +67,19 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base
 
-COPY script/entrypoint.sh /entrypoint.sh
-COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+ARG SQL_ALCHEMY_CONN
+ARG FERNET_KEY
+ARG BROKER_URL
+
+ENV AIRFLOW__CORE__SQL_ALCHEMY_CONN=$SQL_ALCHEMY_CONN
+ENV AIRFLOW__CORE__FERNET_KEY=$FERNET_KEY
+ENV AIRFLOW__CELERY__BROKER_URL=$BROKER_URL
+
+COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 RUN chown -R airflow: ${AIRFLOW_HOME}
 
-EXPOSE 8080 5555 8793
-
 USER airflow
 WORKDIR ${AIRFLOW_HOME}
-ENTRYPOINT ["/entrypoint.sh"]
+
+RUN ["airflow", "initdb"]
