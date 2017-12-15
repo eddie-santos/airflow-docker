@@ -10,6 +10,18 @@ Steps:
 3. Type `docker build --rm -t repo/image:tag .` to build the image.
 4. Type `docker run -d -p 8080:8080 --env-file={environment-name.env} repo/image:tag` to run your image.
 
+
+### Build
+
+```bash
+docker build --rm \
+--build-arg SQL_ALCHEMY_CONN=$SQL_ALCHEMY_CONN \
+--build-arg FERNET_KEY=$FERNET_KEY \
+--build-arg BROKER_URL=$BROKER_URL \
+-t esantos3/airflow-base:1.0.0 .
+```
+
+
 ### Configurations with environment variables
 
 To run Airflow inside a container, we need a metadata database outside of the container to track state. Typically, 
