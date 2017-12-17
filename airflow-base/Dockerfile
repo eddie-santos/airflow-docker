@@ -1,7 +1,7 @@
 # VERSION 1.0.0
 # AUTHOR: Eddie Santos
 # DESCRIPTION: Basic Airflow container
-# BUILD: docker build --rm -t esantos3/airflow:1.0.0 .
+# BUILD: docker build --rm -t esantos3/airflow-base .
 # SOURCE: https://github.com/esantos3/airflow-docker
 
 FROM python:3.6-slim
@@ -82,7 +82,6 @@ COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 RUN chown -R airflow: ${AIRFLOW_HOME}
 
-USER airflow
 WORKDIR ${AIRFLOW_HOME}
 
 RUN ["airflow", "initdb"]

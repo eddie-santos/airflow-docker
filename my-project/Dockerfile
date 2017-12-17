@@ -4,7 +4,7 @@
 # BUILD: docker build --rm -t esantos3/my-project:1.0.0 .
 # SOURCE: https://github.com/esantos3/airflow-docker
 
-FROM esantos3/airflow-base:1.0.0
+FROM esantos3/airflow-base:latest
 MAINTAINER Eddie Santos <eddie.santos.3@gmail.com>
 
 ARG PROJECT_HOME=/usr/local/project

@@ -18,7 +18,11 @@ docker build --rm \
 --build-arg SQL_ALCHEMY_CONN=$SQL_ALCHEMY_CONN \
 --build-arg FERNET_KEY=$FERNET_KEY \
 --build-arg BROKER_URL=$BROKER_URL \
--t esantos3/airflow-base:1.0.0 .
+-t esantos3/airflow-base .
+```
+
+```
+docker run -d -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock -it esantos3/airflow
 ```
 
 

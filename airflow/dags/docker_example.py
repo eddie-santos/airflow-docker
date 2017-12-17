@@ -28,13 +28,14 @@ dag = DAG(
 
 # t1, t2 and t3 are examples of tasks created by instantiating operators
 t1 = BashOperator(
-    task_id='docker_pull',
-    bash_command='docker pull esantos3/my-project:1.0.0',
+    task_id='print_hello',
+    bash_command='echo "Hello!"',
     dag=dag)
 
 t2 = DockerOperator(
     task_id='my_project',
-    image='registry.hub.docker.com/esantos3/my-project:1.0.0',
+    image='esantos3/my-project',
+    force_pull=True,
     dag=dag)
 
 t2.set_upstream(t1)
