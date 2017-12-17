@@ -24,7 +24,9 @@ default_args = {
 }
 
 dag = DAG(
-    'docker_example', default_args=default_args, schedule_interval=timedelta(1))
+    'docker_example', 
+    default_args=default_args, 
+    schedule_interval=timedelta(1))
 
 # t1, t2 and t3 are examples of tasks created by instantiating operators
 t1 = BashOperator(
@@ -34,7 +36,7 @@ t1 = BashOperator(
 
 t2 = DockerOperator(
     task_id='my_project',
-    image='esantos3/my-project',
+    image='esantos3/my-project:latest',
     force_pull=True,
     dag=dag)
 

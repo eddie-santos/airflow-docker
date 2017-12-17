@@ -1,7 +1,7 @@
 # VERSION 1.0.0
 # AUTHOR: Eddie Santos
 # DESCRIPTION: Project 
-# BUILD: docker build --rm -t esantos3/my-project:1.0.0 .
+# BUILD: docker build --rm -t esantos3/my-project .
 # SOURCE: https://github.com/esantos3/airflow-docker
 
 FROM esantos3/airflow-base:latest

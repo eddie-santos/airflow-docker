@@ -80,8 +80,4 @@ ENV AIRFLOW__CELERY__BROKER_URL=$BROKER_URL
 
 COPY airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
-RUN chown -R airflow: ${AIRFLOW_HOME}
-
-WORKDIR ${AIRFLOW_HOME}
-
 RUN ["airflow", "initdb"]

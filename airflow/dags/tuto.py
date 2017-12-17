@@ -32,8 +32,8 @@ t1 = BashOperator(
     dag=dag)
 
 t2 = BashOperator(
-    task_id='sleep',
-    bash_command='sleep 5',
+    task_id='print_hello',
+    bash_command='echo "Hello!"',
     retries=3,
     dag=dag)
 
