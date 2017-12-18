@@ -20,14 +20,17 @@ RUN apt-get update -yqq \
    		"deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
     	$(lsb_release -cs) \
     	stable" \
-    && apt-get update -yqq \
-    && apt-get install -yqq docker-ce
+    && curl -fsSL https://get.docker.com/ | sh
+
+RUN curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
+	&& chmod +x /usr/local/bin/docker-compose
 
 ARG AIRFLOW_HOME=/usr/local/airflow
 
 COPY dags ${AIRFLOW_HOME}/dags
 
 RUN chown -R airflow: ${AIRFLOW_HOME}
+RUN usermod -aG docker airflow
 
 EXPOSE 8080 5555 8793
 
