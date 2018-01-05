@@ -26,15 +26,16 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-co
 	&& chmod +x /usr/local/bin/docker-compose
 
 ARG AIRFLOW_HOME=/usr/local/airflow
+ENV AIRFLOW_HOME=${AIRFLOW_HOME}
 
 COPY dags ${AIRFLOW_HOME}/dags
 
 RUN chown -R airflow: ${AIRFLOW_HOME}
-RUN usermod -aG docker airflow
+# RUN usermod -aG docker airflow
 
 EXPOSE 8080 5555 8793
 
-USER airflow
+# USER airflow
 
 WORKDIR ${AIRFLOW_HOME}
 
