@@ -1,4 +1,4 @@
-from airflow.hooks import PostgresHook
+from airflow.hooks.postgres_hook import PostgresHook
 import os
 import pandas as pd
 
