@@ -8,6 +8,10 @@
 FROM esantos3/airflow-base:latest
 MAINTAINER Eddie Santos <eddie.santos.3@gmail.com>
 
+ARG AIRFLOW_HOME=/usr/local/airflow
+
+ENV AIRFLOW_HOME=${AIRFLOW_HOME}
+
 RUN apt-get update -yqq \
     && apt-get install -yqq \
     	apt-transport-https \
@@ -20,11 +24,9 @@ RUN apt-get update -yqq \
    		"deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
     	$(lsb_release -cs) \
     	stable" \
-    && curl -fsSL https://get.docker.com/ | sh
-
-ARG AIRFLOW_HOME=/usr/local/airflow
-
-ENV AIRFLOW_HOME=${AIRFLOW_HOME}
+    && curl -fsSL https://get.docker.com/ | sh \
+    && pip install docker \
+    && pip install docker-py
 
 COPY dags ${AIRFLOW_HOME}/dags
 
@@ -33,4 +35,5 @@ EXPOSE 8080 5555 8793
 WORKDIR ${AIRFLOW_HOME}
 
 CMD ["airflow", "scheduler"]
+
 CMD ["airflow", "webserver"]
