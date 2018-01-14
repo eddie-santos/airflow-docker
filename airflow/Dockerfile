@@ -34,6 +34,6 @@ EXPOSE 8080 5555 8793
 
 WORKDIR ${AIRFLOW_HOME}
 
-CMD ["airflow", "scheduler"]
+# RUN ["airflow", "scheduler"]
 
 CMD ["airflow", "webserver"]
